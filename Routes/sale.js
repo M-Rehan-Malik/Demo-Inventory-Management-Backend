@@ -145,7 +145,7 @@ router.post(
 
       let invoiceNo;
       // If the user is entering first sale
-      if (!sales) {
+      if (sales.length===0) {
         invoiceNo = 1;
       } else {
         invoiceNo = sales[sales.length - 1].invoiceNo + 1;
