@@ -142,7 +142,14 @@ router.post(
 
     try {
       let sales = await Sale.find({});
-      let invoiceNo = sales[sales.length - 1].invoiceNo + 1;
+
+      let invoiceNo;
+      // If the user is entering first sale
+      if (!sales) {
+        invoiceNo = 1;
+      } else {
+        invoiceNo = sales[sales.length - 1].invoiceNo + 1;
+      }
       // Save the sale to db
 
       await Sale.create({ products, totalAmount, deliveredTo, invoiceNo });
